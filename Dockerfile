@@ -2,11 +2,13 @@
 # This image is alpine based
 
 FROM mhart/alpine-node:6
-MAINTAINER <cmosetick@gmail.com>
+MAINTAINER Chris Mosetick <cmosetick@gmail.com>
 
 RUN \
-apk --no-cache add supervisor && \
-apk --no-cache upgrade
+apk --no-cache --update add supervisor openssh git && \
+rm /etc/supervisord.conf && \
+mkdir -p /etc/supervisor/conf.d && \
+rm -rf /var/cache/apk/*
 
 COPY supervisord.conf /etc/supervisor
 
