@@ -8,6 +8,7 @@ RUN \
 apk --no-cache --update add supervisor openssh git && \
 rm /etc/supervisord.conf && \
 mkdir -p /etc/supervisor/conf.d && \
+mkdir /var/log/supervisor && \
 rm -rf /var/cache/apk/*
 
 COPY supervisord.conf /etc/supervisor
