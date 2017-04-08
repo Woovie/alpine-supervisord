@@ -2,10 +2,11 @@
 # This image is alpine based
 
 FROM mhart/alpine-node:6
-MAINTAINER Chris Mosetick <cmosetick@gmail.com>
+LABEL "maintainer Chris Mosetick <cmosetick@gmail.com>"
 
 RUN \
-apk --no-cache --update add supervisor openssh git && \
+echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+apk --no-cache --update add yarn supervisor openssh git && \
 rm /etc/supervisord.conf && \
 mkdir -p /etc/supervisor/conf.d && \
 mkdir /var/log/supervisor && \
