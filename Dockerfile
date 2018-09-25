@@ -1,17 +1,14 @@
-# Docker Hub: cmosetick/alpine-supervisord
-# This image is alpine based
+FROM node:alpine
+LABEL 'maintainer Jordan Banasik <woovie@woovie.net>'
 
-FROM mhart/alpine-node:6
-LABEL "maintainer Chris Mosetick <cmosetick@gmail.com>"
+RUN echo -e 'https://dl-cdn.alpinelinux.org/alpine/edge/main\nhttps://dl-cdn.alpinelinux.org/alpine/edge/community\nhttps://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
-RUN \
-echo -e 'http://dl-cdn.alpinelinux.org/alpine/edge/main\nhttp://dl-cdn.alpinelinux.org/alpine/edge/community\nhttp://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-apk --no-cache --update add yarn supervisor openssh git && \
-rm /etc/supervisord.conf && \
-mkdir -p /etc/supervisor/conf.d && \
-mkdir /var/log/supervisor && \
-rm -rf /var/cache/apk/*
+RUN apk --no-cache --update add supervisor yarn
 
-COPY supervisord.conf /etc/supervisor
+RUN mkdir -p /etc/supervisor/conf.d/
+RUN mkdir -p /var/log/supervisor/
 
-# This is a base image used for other images to build on top of so I'm not adding a CMD or ENTRYPOINT
+RUN rm -f /etc/supervisord.conf
+RUN rm -rf /var/cache/apk/*
+
+COPY supervisord.conf /etc/supervisor/
