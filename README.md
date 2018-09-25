@@ -1,12 +1,7 @@
 # alpine-supervisord
+Builds from node:alpine
 
-Minimal docker image that builds off `mhart/alpine-node:6`.
+Alpine 3.8
+Node 10.11.0
 
-Currently Alpine v3.4
-
-currently contains:
-- node 6.9.1
-- npm 3.10.8
-- supervisor installed via `apk` (currently 3.2.0)
-
-For any images that build on top of this, add your program specific supervisor conf files to `/etc/supervisor/conf.d/`.
+Includes any supervisor configuration placed into /etc/supervisor/conf.d/
