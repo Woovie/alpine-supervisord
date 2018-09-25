@@ -1,7 +1,7 @@
 FROM node:alpine
-LABEL 'maintainer Jordan Banasik <woovie@woovie.net>'
+LABEL "maintainer Jordan Banasik <woovie@woovie.net>"
 
-RUN echo -e 'https://dl-cdn.alpinelinux.org/alpine/edge/main\nhttps://dl-cdn.alpinelinux.org/alpine/edge/community\nhttps://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
+RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/edge/main\nhttps://dl-cdn.alpinelinux.org/alpine/edge/community\nhttps://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 RUN apk --no-cache --update add supervisor yarn
 
